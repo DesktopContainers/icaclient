@@ -34,8 +34,8 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     \
     useradd -ms /home/browser/browser.sh browser && \
     chown browser.browser -R /home/browser && \
-    sudo -u browser echo "#!/bin/sh\nfirefox --new-instance \$*\n" > /home/browser/browser.sh && \
-    sudo -u browser chmod +x /home/browser/browser.sh && \
-    sudo -u browser mkdir /home/browser/.ICAClient
+    su - browser -c 'echo "#!/bin/sh\nfirefox --new-instance \$*\n" > /home/browser/browser.sh' && \
+    su - browser -c 'chmod +x /home/browser/browser.sh' && \
+    su - browser -c 'mkdir /home/browser/.ICAClient'
 
 ADD wfclient.ini /home/browser/.ICAClient/wfclient.ini
