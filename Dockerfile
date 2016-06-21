@@ -19,16 +19,12 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     dpkg -i icaclient.deb || apt-get -q -y -f install; \
     apt-get -q -y clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* icaclient.deb; \
-    find /;\
+    \
     ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts/; \
     c_rehash /opt/Citrix/ICAClient/keystore/cacerts/; \
-    rm -f /usr/lib/mozilla/plugins/npwrapper.npica.so \
-          /usr/lib/firefox/plugins/npwrapper.npica.so \
-          /usr/lib/iceweasel/plugins/npwrapper.npica.so \
-          /usr/lib/mozilla/plugins/npica.so; \
-          /usr/lib/firefox/plugins/npica.so; \
-          /usr/lib/iceweasel/plugins/npica.so; \
-    ln -s /opt/Citrix/ICAClient/npica.so /usr/lib/iceweasel/plugins/npica.so; \
+    rm -f /usr/lib/mozilla/plugins/npica.so; \
+          /usr/local/lib/netscape/plugins/npica.so; \
+    ln -s /opt/Citrix/ICAClient/npica.so /usr/lib/mozilla/plugins/npica.so; \
     cp /opt/Citrix/ICAClient/nls/en.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/en/; \
     echo 'pref("plugin.state.npica", 2);' > /usr/lib/iceweasel/defaults/pref/icaclient.js; \
     \
