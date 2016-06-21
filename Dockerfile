@@ -5,7 +5,7 @@ ENV icaclient_version 13.3.0.344519
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -q -y update && \
     apt-get -q -y install wget \
-                          firefox \
+                          iceweasel \
                           net-tools && \
     apt-get -q -y install libxmu6 \
                           libwebkitgtk-1.0-0 \
