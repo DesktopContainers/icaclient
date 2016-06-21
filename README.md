@@ -13,7 +13,7 @@ It's based on __DesktopContainers/base-debian__
 
 ## ICA-Client License
 
-The `CITRIX LICENSE AGREEMENT` is stored in file `LICENSE`.
+The `CITRIX RECEIVER LICENSE AGREEMENT` is stored in file `LICENSE`.
 You must accept the `LICENSE` if you use this docker container.
 
 You could also download the client from:
