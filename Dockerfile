@@ -19,7 +19,7 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     dpkg -i icaclient.deb || apt-get -q -y -f install; \
     apt-get -q -y clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* icaclient.deb; \
-    \
+    find /;\
     ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts/; \
     c_rehash /opt/Citrix/ICAClient/keystore/cacerts/; \
     rm -f /usr/lib/mozilla/plugins/npwrapper.npica.so \
@@ -33,7 +33,7 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     echo 'pref("plugin.state.npica", 2);' > /usr/lib/iceweasel/defaults/pref/icaclient.js; \
     \
     useradd -ms /home/browser/browser.sh browser && \
-    mkdir /home/browser && chown browser.browser -R /home/browser && \
+    chown browser.browser -R /home/browser && \
     sudo -u browser echo "#!/bin/sh\nfirefox --new-instance \$*\n" > /home/browser/browser.sh && \
     sudo -u browser chmod +x /home/browser/browser.sh && \
     sudo -u browser mkdir /home/browser/.ICAClient
