@@ -21,10 +21,7 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* icaclient.deb; \
     \
     ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts/; \
-    c_rehash /opt/Citrix/ICAClient/keystore/cacerts/; \
-    \
-    rm -f /usr/lib/mozilla/plugins/npica.so; \
-    ln -s /opt/Citrix/ICAClient/npica.so /usr/lib/mozilla/plugins/npica.so; \
+    c_rehash /opt/Citrix/ICAClient/keystore/cacerts/ > /dev/null; \
     \
     cp /opt/Citrix/ICAClient/nls/en.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/en/; \
     echo 'pref("plugin.state.npica", 2);' > /usr/lib/firefox-esr/defaults/pref/icaclient.js; \
