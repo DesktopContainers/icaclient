@@ -22,15 +22,17 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     \
     ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts/; \
     c_rehash /opt/Citrix/ICAClient/keystore/cacerts/; \
+    \
     rm -f /usr/lib/mozilla/plugins/npica.so; \
     ln -s /opt/Citrix/ICAClient/npica.so /usr/lib/mozilla/plugins/npica.so; \
+    \
     cp /opt/Citrix/ICAClient/nls/en.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/en/; \
     echo 'pref("plugin.state.npica", 2);' > /usr/lib/firefox-esr/defaults/pref/icaclient.js; \
     \
-    useradd -ms /home/browser/browser.sh browser && \
+    echo "#!/bin/sh\nfirefox --new-instance \$*\n" > /bin/browser.sh && \
+    chmod a+x /bin/browser.sh && \
+    useradd -ms /bin/browser.sh browser && \
     chown browser.browser -R /home/browser && \
-    su - browser -c 'echo "#!/bin/sh\nfirefox --new-instance \$*\n" > /home/browser/browser.sh' && \
-    su - browser -c 'chmod +x /home/browser/browser.sh' && \
-    su - browser -c 'mkdir /home/browser/.ICAClient'
+    su - browser -c 'mkdir /home/browser/.ICAClient';
 
 ADD wfclient.ini /home/browser/.ICAClient/wfclient.ini
