@@ -38,4 +38,4 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     sudo -u browser chmod +x /home/browser/browser.sh && \
     sudo -u browser mkdir /home/browser/.ICAClient
 
-ADD wfclient.ini .ICAClient/wfclient.ini
+ADD wfclient.ini /home/browser/.ICAClient/wfclient.ini
