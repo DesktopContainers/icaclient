@@ -24,12 +24,16 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     c_rehash /opt/Citrix/ICAClient/keystore/cacerts/; \
     rm -f /usr/lib/mozilla/plugins/npwrapper.npica.so \
           /usr/lib/firefox/plugins/npwrapper.npica.so \
+          /usr/lib/iceweasel/plugins/npwrapper.npica.so \
           /usr/lib/mozilla/plugins/npica.so; \
-    ln -s /opt/Citrix/ICAClient/npica.so /usr/lib/firefox-addons/plugins/npica.so; \
+          /usr/lib/firefox/plugins/npica.so; \
+          /usr/lib/iceweasel/plugins/npica.so; \
+    ln -s /opt/Citrix/ICAClient/npica.so /usr/lib/iceweasel/plugins/npica.so; \
     cp /opt/Citrix/ICAClient/nls/en.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/en/; \
-    echo 'pref("plugin.state.npica", 2);' > /usr/lib/firefox/defaults/pref/icaclient.js; \
+    echo 'pref("plugin.state.npica", 2);' > /usr/lib/iceweasel/defaults/pref/icaclient.js; \
     \
     useradd -ms /home/browser/browser.sh browser && \
+    mkdir /home/browser && chown browser.browser -R /home/browser && \
     sudo -u browser echo "#!/bin/sh\nfirefox --new-instance \$*\n" > /home/browser/browser.sh && \
     sudo -u browser chmod +x /home/browser/browser.sh && \
     sudo -u browser mkdir /home/browser/.ICAClient
