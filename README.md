@@ -27,7 +27,7 @@ https://www.citrix.com/downloads/citrix-receiver/linux/receiver-for-linux-latest
 Since it is an X11 GUI software, usage is in two steps:
   1. Run a background container as server or start existing one.
 
-        docker start icaclient || docker run -d --name icaclient -e ENABLE_SSHD='true' desktopcontainers/icaclient
+        docker start icaclient || docker run -d --name icaclient desktopcontainers/icaclient
         
   2. Connect to the server using `ssh -X` (as many times you want). 
      _Logging in with `ssh` automatically opens a firefox window_
