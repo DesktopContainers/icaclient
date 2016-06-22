@@ -14,7 +14,6 @@ RUN apt-get -q -y update && \
 
 RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/linux/receiver-for-linux-latest.html | grep '<a' | grep 'icaclient_' | grep '_amd64.deb' | sed -e 's,.*rel=",https:,' -e 's,".*,,g' | head -n1); \
     wget "$DOWNLOAD_URL" -O icaclient.deb && \
-    dpkg --add-architecture i386 && \
     dpkg -i icaclient.deb || apt-get -q -y -f install; \
     apt-get -q -y clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* icaclient.deb; \
