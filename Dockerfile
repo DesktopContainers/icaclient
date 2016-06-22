@@ -5,8 +5,7 @@ ENV icaclient_version 13.3.0.344519
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -q -y update && \
     apt-get -q -y install wget \
-                          iceweasel \
-                          net-tools && \
+                          iceweasel && \
     apt-get -q -y install libxmu6 \
                           libwebkitgtk-1.0-0 \
                           libglu1-mesa && \
@@ -26,11 +25,8 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     cp /opt/Citrix/ICAClient/nls/en.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/en/; \
     echo 'pref("plugin.state.npica", 2);' > /usr/lib/firefox-esr/defaults/pref/icaclient.js; \
     \
-    useradd -m browser && \
-    chown browser.browser -R /home/browser && \
-    su - browser -c 'echo "#!/bin/sh\nfirefox --new-instance \$*\n" > /home/browser/browser.sh' && \
-    su - browser -c 'chmod +x /home/browser/browser.sh' && \
-    su - browser -c 'mkdir /home/browser/.ICAClient' && \
-    usermod -s /home/browser/browser.sh browser
+    echo "#!/bin/bash\nfirefox --new-instance \$*\n" > /bin/ssh-app.sh && \
+    mkdir /home/app/.ICAClient && \
+    chown app.app -R /home/app/.ICAClient
 
-ADD wfclient.ini /home/browser/.ICAClient/wfclient.ini
+ADD wfclient.ini /home/app/.ICAClient/wfclient.ini
