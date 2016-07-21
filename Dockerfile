@@ -23,7 +23,7 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     cp /opt/Citrix/ICAClient/nls/en.UTF-8/eula.txt /opt/Citrix/ICAClient/nls/en/; \
     echo 'pref("plugin.state.npica", 2);' > /usr/lib/firefox-esr/defaults/pref/icaclient.js; \
     \
-    echo "#!/bin/bash\nfirefox --new-instance \$*\n" > /bin/ssh-app.sh && \
+    echo "#!/bin/bash\nkill \$(pidof firefox-esr)\nfirefox --new-instance \$*\n" > /bin/ssh-app.sh && \
     mkdir /home/app/.ICAClient && \
     chown app.app -R /home/app/.ICAClient
 
