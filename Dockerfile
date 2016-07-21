@@ -1,4 +1,4 @@
-FROM desktopcontainers/base-debian
+FROM desktopcontainers/base-mate
 
 ENV icaclient_version 13.3.0.344519
 
