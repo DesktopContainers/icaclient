@@ -33,7 +33,7 @@ Since it is an X11 GUI software, usage is in two steps:
      _Logging in with `ssh` automatically opens a firefox window_
 
         ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-        -X browser@$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' icaclient)
+        -X app@$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' icaclient)
         
   3. Browse to your ICA service, start the client and enjoy.
 
