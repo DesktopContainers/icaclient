@@ -1,5 +1,7 @@
 FROM desktopcontainers/base-mate
 
+MAINTAINER MarvAmBass (https://github.com/DesktopContainers)
+
 ENV icaclient_version 13.3.0.344519
 
 RUN apt-get -q -y update && \
