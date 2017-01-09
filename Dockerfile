@@ -27,7 +27,7 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     \
     sed -i 's/https:.*first.*"/"/g' /usr/lib/firefox-esr/browser/defaults/preferences/firefox-branding.js; \
     \
-    echo "#!/bin/bash\nkill \$(pidof firefox-esr)\nfirefox --new-instance \$* \$WEB_URL\n" > /bin/ssh-app.sh && \
+    echo "#!/bin/bash\nkill \$(pidof firefox-esr)\nfirefox --new-instance \$WEB_URL\n" > /bin/ssh-app.sh && \
     mkdir /home/app/.ICAClient && \
     chown app.app -R /home/app/.ICAClient
 
