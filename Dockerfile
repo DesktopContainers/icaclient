@@ -27,9 +27,9 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     \
     sed -i 's/https:.*first.*"/"/g' /usr/lib/firefox-esr/browser/defaults/preferences/firefox-branding.js; \
     \
-    sed -i 's/# exec CMD/# add weburl for ssh\necho "$WEB_URL" > \/tmp\/weburl\n\n# exec CMD/g' /opt/entrypoint.sh; \
+    sed -i 's/# exec CMD/# add weburl for ssh\necho "$WEB_URL" >> \/etc\/environment\n\n# exec CMD/g' /opt/entrypoint.sh; \
     \
-    echo "#!/bin/bash\nkill \$(pidof firefox-esr)\nfirefox --new-instance \$(cat /tmp/weburl)\n" > /bin/ssh-app.sh && \
+    echo "#!/bin/bash\nkill \$(pidof firefox-esr)\nfirefox --new-instance \$WEB_URL\n" > /bin/ssh-app.sh && \
     mkdir /home/app/.ICAClient && \
     chown app.app -R /home/app/.ICAClient
 
