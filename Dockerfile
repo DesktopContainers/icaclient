@@ -29,7 +29,7 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     \
     sed -i 's/# exec CMD/# add weburl for ssh\necho "WEB_URL=$WEB_URL" >> \/etc\/environment\n\n# exec CMD/g' /opt/entrypoint.sh; \
     \
-    echo "#!/bin/bash\nkill \$(pidof firefox-esr)\nfirefox --new-instance \$(cat /etc/environment | grep WEB_URL | cut -d= -f2)\n" > /bin/ssh-app.sh && \
+    echo "#!/bin/bash\nkill \$(pidof firefox-esr)\nsleep 2\nfirefox --new-instance \$WEB_URL\n" > /bin/ssh-app.sh && \
     mkdir /home/app/.ICAClient && \
     chown app.app -R /home/app/.ICAClient
 
