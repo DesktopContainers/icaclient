@@ -2,7 +2,7 @@ FROM desktopcontainers/base-mate
 
 MAINTAINER MarvAmBass (https://github.com/DesktopContainers)
 
-ENV icaclient_version 13.3.0.344519
+ENV icaclient_version 13.5.0.10185126
 
 RUN apt-get -q -y update && \
     apt-get -q -y install wget \
