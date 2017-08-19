@@ -2,7 +2,7 @@ FROM desktopcontainers/base-debian
 
 MAINTAINER MarvAmBass (https://github.com/DesktopContainers)
 
-ENV icaclient_version13.6.0.10243651
+ENV icaclient_version 13.6.0.10243651
 
 RUN apt-get -q -y update && \
     apt-get -q -y install wget \
