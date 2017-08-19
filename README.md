@@ -32,15 +32,19 @@ https://www.citrix.com/downloads/citrix-receiver/linux/receiver-for-linux-latest
 Since it is an X11 GUI software, usage is in two steps:
   1. Run a background container as server or start existing one.
 
-        docker start icaclient || docker run -d --name icaclient \
-        -e 'WEB_URL=https://github.com' desktopcontainers/icaclient
-        
+```
+docker start icaclient || docker run -d --name icaclient \
+-e 'WEB_URL=https://github.com' desktopcontainers/icaclient
+```
+
   2. Connect to the server using `ssh -X` (as many times you want). 
      _Logging in with `ssh` automatically opens a firefox window_
 
-        ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-        -X app@$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' icaclient)
-        
+```
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
+-X app@$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' icaclient)
+```
+
   3. Browse to your ICA service, start the client and enjoy.
 
 You can configure firefox and set bookmarks. As long as you don't remove the container and you reuse the same container, all your changes persist. You could also tag and push your configuration to a registry to backup (should be your own private registry for your privacy).
