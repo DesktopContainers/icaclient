@@ -27,9 +27,10 @@ RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/li
     \
     sed -i 's/https:.*first.*"/"/g' /usr/lib/firefox-esr/browser/defaults/preferences/firefox-branding.js; \
     \
-    sed -i 's/unset VNC_PASSWORD/unset VNC_PASSWORD\n\n	# add weburl as firefox startpage\n	env | grep WEB_URL >> \/etc\/environment\n/g' /opt/entrypoint.sh; \
+    sed -i 's/unset VNC_PASSWORD/unset VNC_PASSWORD\n\n	# add weburl as firefox startpage\n	env | grep WEB_URL >> \/etc\/environment\n/g' /usr/local/bin/entrypoint.sh; \
     \
-    echo "#!/bin/bash\nkill \$(pidof firefox-esr)\nfirefox --new-instance \$WEB_URL\n" > /bin/ssh-app.sh && \
+    echo "kill \$(pidof firefox-esr)" >> /usr/local/bin/ssh-app.sh && \
+    echo "firefox --new-instance \$WEB_URL\n" >> /usr/local/bin/ssh-app.sh && \
     mkdir /home/app/.ICAClient && \
     chown app.app -R /home/app/.ICAClient
 
