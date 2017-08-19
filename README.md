@@ -22,8 +22,8 @@ https://www.citrix.com/downloads/citrix-receiver/linux/receiver-for-linux-latest
 
 ## Environment variables and defaults
 
-* __WEB\_URL__
- * specify the url the browser will point to by default e.g. the citrix login portal url
+- __WEB\_URL__
+    - specify the url the browser will point to by default e.g. the citrix login portal url
 
 ## Usage: Run the Client
 
