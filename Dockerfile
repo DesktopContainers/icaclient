@@ -2,8 +2,6 @@ FROM desktopcontainers/base-debian
 
 MAINTAINER MarvAmBass (https://github.com/DesktopContainers)
 
-ENV icaclient_version 13.6.0.10243651
-
 RUN apt-get -q -y update && \
     apt-get -q -y install wget \
                           iceweasel && \
@@ -13,7 +11,7 @@ RUN apt-get -q -y update && \
     apt-get -q -y clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/citrix-receiver/linux/receiver-for-linux-latest.html | grep '<a' | grep 'icaclient_' | grep '_amd64.deb' | sed -e 's,.*rel=",https:,' -e 's,".*,,g' | head -n1); \
+RUN DOWNLOAD_URL=$(wget -O - https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html | grep '<a' | grep 'icaclient_' | grep '_amd64.deb' | sed -e 's,.*rel=",https:,' -e 's,".*,,g' | head -n1); \
     wget "$DOWNLOAD_URL" -O icaclient.deb && \
     dpkg -i icaclient.deb || apt-get -q -y -f install; \
     apt-get -q -y clean && \
