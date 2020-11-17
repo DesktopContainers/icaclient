@@ -18,7 +18,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts/ && \
     c_rehash /opt/Citrix/ICAClient/keystore/cacerts/ > /dev/null && \
     \
-    echo ". /etc/environment" >> /container/scripts/app && \
     echo "kill \$(pidof firefox-esr)" >> /container/scripts/app && \
     echo "firefox --new-instance \$WEB_URL\n" >> /container/scripts/app && \
     \
