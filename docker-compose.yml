@@ -1,0 +1,23 @@
+version: '3'
+ 
+services:
+  icaclient:
+    build: .
+    image: desktopcontainers/icaclient
+    restart: always
+    environment:
+      WEB_URL: https://www.google.com
+
+      SERVER_NAME: localhost
+
+      VNC_SCREEN_DEPTH: 24
+
+      #ENABLE_SUDO: enable
+      #ENABLE_KIOSK: enable
+    volumes:
+      - ./certs:/certs
+    ports:
+      - "2222:22"
+      - "8080:80"
+      - "4443:443"
+      - "5900:5900"

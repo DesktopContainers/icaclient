@@ -1,4 +1,12 @@
-FROM desktopcontainers/base-debian
+FROM alpine AS builder
+
+# Download QEMU, see https://github.com/docker/hub-feedback/issues/1261
+ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-arm.tar.gz
+RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
+
+FROM desktopcontainers/base-debian:latest-arm32v6
+
+COPY --from=builder qemu-arm-static /usr/bin
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -q -y update && \
@@ -7,7 +15,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -q -y install libxmu6 \
                           libglu1-mesa && \
     \
-    wget -O - https://www.citrix.com/de-de/downloads/workspace-app/linux/workspace-app-for-linux-latest.html 2>/dev/null | grep '<a' | grep icaclient_ | grep _amd64 | sed 's/.*rel="/https:/g' | sed 's/".*//g' | sed 's/^/wget -O icaclient.deb /g' | sh && \
+    wget -O - https://www.citrix.com/de-de/downloads/workspace-app/linux/workspace-app-for-linux-latest.html 2>/dev/null | grep '<a' | grep icaclient_ | grep _arm | sed 's/.*rel="/https:/g' | sed 's/".*//g' | sed 's/^/wget -O icaclient.deb /g' | sh && \
     \
     apt-get -q -y install -f /icaclient.deb && \
     \
