@@ -11,6 +11,11 @@ Encapsulate in a docker container.
 
 It's based on [desktopcontainers/base-debian](https://github.com/DesktopContainers/base-debian)
 
+## Changelogs
+
+* 2020-11-25
+    * removed unsupported arm64 arch
+
 ## Environment variables and defaults
 
 - __WEB\_URL__
