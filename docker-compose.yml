@@ -5,6 +5,7 @@ services:
     build: .
     image: desktopcontainers/icaclient
     restart: always
+    shm_size: "2g"
     environment:
       WEB_URL: https://www.google.com
 
